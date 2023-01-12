@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background-color: #141a23;
+    cursor: none;
+}
+
+.hands {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    translate: -50% 0;
+    pointer-events: none; 
+    transition: 0.2s ease-out;
+
+    z-index: 999;
+}
+.leftHand {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    
+    background-image: url("images/leftHand.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.rightHand {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    
+    background-image: url("images/rightHand.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.villain {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 15vw;
+    aspect-ratio: 1/2;
+    translate: -50% -50%;
+
+    background-image: url("images/vilains/oingo-boingo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.menacing-rain {
+    position: absolute;
+    top: -10%;
+    width: 70px;
+    aspect-ratio: 1/1;
+
+    animation-name: menacing-rain-animation;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+
+    background-image: url("images/menacing.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+@keyframes menacing-rain-animation {
+    from {
+        top: -10%
+    }
+    to {
+        top: 100%
+    }
+}
+
+
+/* heading: */
+
+.heading {
+    position: absolute;
+    width: 80vw;
+    height: 10vh;
+    top: 0;
+    left: 50%;
+    translate: -50%;
+    margin-top: 1%;
+    border-top: antiquewhite 2px dashed;
+    border-bottom: antiquewhite 2px dashed;
+    border-radius: 15px;
+}
+.heading-inner {
+    position: relative;
+    margin-left: 5%;
+    width: fit-content;
+    height: fit-content;
+    top: 50%;
+    translate: 0 -50%;
+    color: antiquewhite;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: sans-serif;
+    float: left;
+}
