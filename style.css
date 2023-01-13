@@ -8,6 +8,92 @@ body {
     overflow: hidden;
 }
 
+
+.intro-screen {
+    position: absolute;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    background-color: #2a3749;
+    cursor: none;
+}
+@keyframes intro-screen-slide {
+    from {
+        left: 0
+    }
+    to {
+        left: 100%
+    }
+}
+.intro-buttons-slide-class {
+    animation-name: intro-screen-slide;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+@keyframes intro-button-fall {
+    from {
+        top: 50%;
+    }
+    to {
+        top: 150%;
+    }
+}
+.intro-buttons-fall-class {
+    animation-name: intro-button-fall;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+.intro-buttons {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+
+    width: 20vw;
+    aspect-ratio: 2/1;
+}
+.intro-button {
+    position: absolute;
+    aspect-ratio: 2/1;
+    width: 100%;
+
+    background-color: antiquewhite;
+    border-radius: 10px;
+
+    transition: 0.1s ease-in;
+}
+.intro-button:hover {
+    top: 10px;
+}
+.intro-button-back {
+    position: absolute;
+    top: 15px;
+
+    width: 100%;
+    aspect-ratio: 2/1;
+
+    background-color: rgba(250, 235, 215, 0.494);
+    border-radius: 10px;
+}
+.intro-button-txt {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    translate: 0 -50%;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: sans-serif;
+
+    color: #2a3749;
+}
+
+
 .floor-num {
     position: fixed;
     right: 0;
