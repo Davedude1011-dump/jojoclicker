@@ -1,14 +1,44 @@
 * {
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 body {
+    overflow: hidden;
+}
+
+.floor-num {
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin: 0.6%;
+
+    color: antiquewhite;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: sans-serif;
+
+    z-index: 999;
+    cursor: none;
+}
+
+.fighting-area {
+    position: relative;
     overflow: hidden;
     width: 100vw;
     height: 100vh;
     background-color: #141a23;
     cursor: none;
+}
+.crosshair {
+    width: 50px;
+    aspect-ratio: 1/1;
+    position: absolute;
+
+    translate: -50% -50%;
+    z-index: 999;
+    pointer-events: none;
 }
 
 .hands {
@@ -17,7 +47,7 @@ body {
     height: 100vh;
     translate: -50% 0;
     pointer-events: none; 
-    transition: 0.2s ease-out;
+    transition: 0.35s ease-out;
 
     z-index: 999;
 }
@@ -110,4 +140,74 @@ body {
     font-weight: bold;
     font-family: sans-serif;
     float: left;
+}
+
+.hover-to-shop, .hover-to-music {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: calc(100vw - 4px);
+    height: 5vh;
+    background-color: transparent;
+
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border: 2px antiquewhite dashed;
+    border-bottom: none;
+}
+
+.hover-text {
+    position: absolute;
+    height: fit-content;
+    top: 50%;
+    translate: 0 -50%;
+    width: 100%;
+    text-align: center;
+
+    color: antiquewhite;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+/* shopping area */
+
+.shopping-area {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1f2937;
+    cursor: auto;
+}
+.hover-to-fight, .hover-to-shop-up {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: calc(100vw - 4px);
+    height: 5vh;
+    background-color: transparent;
+    
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: 2px antiquewhite dashed;
+    border-top: none;
+
+    cursor: pointer;
+}
+
+
+
+
+/* music area */
+
+.music-area {
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1f2937;
+    cursor: auto;
+
+    cursor: pointer;
 }

@@ -1,7 +1,9 @@
 const hands = document.querySelector(".hands")
 const villainHTML = document.querySelector(".villain")
+const crosshair = document.querySelector(".crosshair")
 const pointCounter = document.querySelector(".menacing-score")
 const pointsPerClickCounter = document.querySelector(".menacing-per-click")
+const floorNum = document.querySelector(".floor-num")
 
 var points = parseInt(localStorage.getItem("menacing")) || 0
 var pointsPerClick = parseInt(localStorage.getItem("pointsPerClick")) || 1
@@ -29,6 +31,12 @@ function addPoints(pointNum) {
 window.onload = function() {
     pointCounter.textContent = "ゴ " + points
     pointsPerClickCounter.textContent = "ゴ " + pointsPerClick + " / click"
+
+    window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
 }
 
 function mouseCoordinates(event){
@@ -37,6 +45,9 @@ function mouseCoordinates(event){
     
     hands.style.left = mouseX + "px"
     hands.style.top = mouseY + "px"
+    
+    crosshair.style.left = mouseX + "px"
+    crosshair.style.top = mouseY + "px"
 }
 
 document.body.onclick = click
@@ -74,16 +85,21 @@ document.body.addEventListener('contextmenu', function(ev) {
     return false;
 }, false);
 
+var villainX = 0
+
 // right clicking villain
 villainHTML.addEventListener('contextmenu', function(ev) {
     ev.preventDefault();
-    villainHTML.style.transform = "translate(-30px, -5px)"
-    menacingRain()
-    addPoints(1)
-
-    setTimeout(() => { 
-    villainHTML.style.transform = "translate(0, 0)"
-    stillClicking = false }, 150);
+    if (villainX > (-window.innerWidth)/2 - (0.15 * (-window.innerWidth))) {
+        villainX -= 30
+        villainHTML.style.transform = "translate(" + villainX + "px, -5px)"
+        menacingRain()
+        addPoints(1)
+    
+        setTimeout(() => { 
+        villainHTML.style.transform = "translate(" + villainX + "px, 0px)"
+        stillClicking = false }, 150);
+    }
     return false;
 }, false);
 
@@ -91,11 +107,70 @@ villainHTML.onclick = villainClick
 
 // left clicking villain
 function villainClick() {
-    villainHTML.style.transform = "translate(30px, -5px)"
-    menacingRain()
-    addPoints(1)
+    if (villainX < (window.innerWidth)/2 - (0.15 * (window.innerWidth))) {
+        villainX += 30
+        villainHTML.style.transform = "translate(" + villainX + "px, -5px)"
+        menacingRain()
+        addPoints(1)
 
-    setTimeout(() => { 
-    villainHTML.style.transform = "translate(0, 0)"
-    stillClicking = false }, 150);
+        setTimeout(() => { 
+            villainHTML.style.transform = "translate(" + villainX + "px, 0px)"
+        stillClicking = false }, 150);
+    }
+}
+
+
+
+// hover to shop
+
+var stillScrolling = false
+const hoverToShopUp = document.querySelector(".hover-to-shop")
+const hoverToShop = document.querySelector(".hover-to-shop-up")
+const hoverToFight = document.querySelector(".hover-to-fight")
+const hoverToMusic = document.querySelector(".hover-to-music")
+
+hoverToFight.addEventListener('mouseover', function(ev) {
+    scrollTo("fight")
+})
+hoverToShop.addEventListener('mouseover', function(ev) {
+    scrollTo("shop")
+})
+hoverToShopUp.addEventListener('mouseover', function(ev) {
+    scrollTo("shop")
+})
+hoverToMusic.addEventListener('mouseover', function(ev) {
+    scrollTo("music")
+})
+
+function scrollTo(area) {
+    if (stillScrolling == false) {
+        stillScrolling = true
+        if (area ==  "fight") {
+            window.scroll({
+                top: (window.innerHeight) * 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+            setTimeout(() => { floorNum.textContent = "0" }, 250);
+        }
+        else if (area == "shop") {
+            window.scroll({
+                top: (window.innerHeight) * 1,
+                left: 0,
+                behavior: 'smooth'
+            });
+            setTimeout(() => { floorNum.textContent = "-1" }, 250);
+        }
+        else if (area == "music") {
+            window.scroll({
+                top: (window.innerHeight) * 2,
+                left: 0,
+                behavior: 'smooth'
+            });
+            setTimeout(() => { floorNum.textContent = "-2" }, 250);
+        }
+        setTimeout(() => {  
+            stillScrolling = false
+        }, 500);
+    }
 }
