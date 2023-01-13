@@ -28,7 +28,8 @@ body {
     overflow: hidden;
     width: 100vw;
     height: 100vh;
-    background-color: #141a23;
+    background-image: linear-gradient(90deg, #101621 25%, #0e131a 25%, #0e131a 50%, #101621 50%, #101621 75%, #0e131a 75%, #0e131a 100%);
+    background-size: 60.00px 60.00px;
     cursor: none;
 }
 .crosshair {
@@ -79,16 +80,26 @@ body {
 .villain {
     position: absolute;
     left: 50%;
-    top: 50%;
-    width: 15vw;
-    aspect-ratio: 1/2;
-    translate: -50% -50%;
+    bottom: 25%;
+    height: 20vw;
+    aspect-ratio: 3/4;
+    translate: -50%;
 
     background-image: url("images/vilains/oingo-boingo.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+.for-ground {
+    position: absolute;
+    width: 100vw;
+    height: 25%;
+    bottom: 0;
+    left: 0;
+    background-color: #18202c;
+}
+
 .menacing-rain {
     position: absolute;
     top: -10%;
@@ -154,6 +165,8 @@ body {
     border-top-right-radius: 15px;
     border: 2px antiquewhite dashed;
     border-bottom: none;
+
+    z-index: 998;
 }
 
 .hover-text {
@@ -194,6 +207,8 @@ body {
     border-top: none;
 
     cursor: pointer;
+
+    z-index: 998;
 }
 
 

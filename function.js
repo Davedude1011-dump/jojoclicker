@@ -29,6 +29,9 @@ function addPoints(pointNum) {
     localStorage.setItem("menacing", parseInt(points))
 }
 window.onload = function() {
+    
+    document.querySelector(".bgMusic").play()
+
     pointCounter.textContent = "ゴ " + points
     pointsPerClickCounter.textContent = "ゴ " + pointsPerClick + " / click"
 
