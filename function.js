@@ -11,21 +11,6 @@ var pointsPerClick = parseInt(localStorage.getItem("pointsPerClick")) || 1
 document.body.onmousemove = mouseCoordinates
 
 
-const introButtons = document.querySelector(".intro-buttons")
-const introScreen = document.querySelector(".intro-screen")
-introButtons.addEventListener("click", function() {
-    introButtons.classList.add("intro-buttons-fall-class")
-    setTimeout(() => {
-        introScreen.classList.add("intro-buttons-slide-class")
-        introButtons.remove()
-        setTimeout(() => {
-            introScreen.remove()
-            document.querySelector(".backgroundMusic").play()
-        }, 1100)
-    }, 1100)
-})
-
-
 function menacingRain() {
     let randomNum = Math.random() * window.innerWidth - 35;
     var menacingDrop = document.createElement("div")
@@ -34,7 +19,7 @@ function menacingRain() {
     document.body.appendChild(menacingDrop)
 
     setTimeout(() => { 
-    menacingDrop.remove()
+        menacingDrop.remove()
     }, 1500);
 }
 
