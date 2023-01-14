@@ -10,7 +10,6 @@ var pointsPerClick = parseInt(localStorage.getItem("pointsPerClick")) || 1
 
 document.body.onmousemove = mouseCoordinates
 
-
 function menacingRain() {
     let randomNum = Math.random() * window.innerWidth - 35;
     var menacingDrop = document.createElement("div")
