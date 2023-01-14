@@ -4,6 +4,88 @@ const crosshair = document.querySelector(".crosshair")
 const pointCounter = document.querySelector(".menacing-score")
 const pointsPerClickCounter = document.querySelector(".menacing-per-click")
 const floorNum = document.querySelector(".floor-num")
+const villainHpCounter = document.querySelector(".villainHP")
+
+var userIsVampire = localStorage.getItem("userIsVampire") || false
+var vampireBoost = localStorage.getItem("vampireBoost") || 3
+var vampireDeBuff = localStorage.getItem("VampireDebuff") || 2
+
+var villainAttackPoint = parseInt(localStorage.getItem("villainAttackPoint")) || 0
+
+function isSunOut() {
+    // get the current date and time
+    const now = new Date();
+  
+    // get the sunrise and sunset times for the user's location
+    const sunrise = new Date();
+    sunrise.setHours(7);
+    sunrise.setMinutes(30);
+  
+    const sunset = new Date();
+    sunset.setHours(19);
+    sunset.setMinutes(30);
+  
+    // check if the current time is between sunrise and sunset
+    if (now >= sunrise && now <= sunset) {
+        if (userIsVampire == true) {
+            pointsPerClick = (pointsPerClick / vampireDeBuff)
+            pointsPerClickCounter.textContent = "ゴ " + pointsPerClick + " / click"
+        }
+    }
+    else {
+        console.log(pointsPerClick)
+        if (userIsVampire == true) {
+            pointsPerClick = (pointsPerClick * vampireBoost)
+            pointsPerClickCounter.textContent = "ゴ " + pointsPerClick + " / click"
+        }
+    }
+  }
+
+function villainHealthDown() {
+    console.log(villainAttackPoint)
+    villainHpCounter.textContent = "( " + (vilainsHealth[0] - villainAttackPoint) + " / " + vilainsHealth[0] + " )"
+}
+
+var vilains = [
+    "Oingo Boingo",
+    "Lang Rangler",
+    "Rikiel",
+    "Bruford",
+    "Anubis",
+    "Ghiaccio",
+    "Noob Dio",
+    "Wamuu",
+    "Kars",
+    "Yoshikage Kira",
+    "Diavolo",
+    "Rohan Kishibe",
+    "Pro Dio",
+    "Kars",
+    "Enrico Pucci",
+    "Lovely Valentine",
+    "Tooru",
+]
+var vilainsHealth = [
+    (10000 * 10**0)*1,
+    (10000 * 10**2)*2,
+    (10000 * 10**3)*3,
+    (10000 * 10**4)*4,
+    (10000 * 10**5)*5,
+    (10000 * 10**6)*6,
+    (10000 * 10**7)*7,
+    (10000 * 10**8)*8,
+    (10000 * 10**9)*9,
+    (10000 * 10**10)*10,
+    (10000 * 10**11)*11,
+    (10000 * 10**12)*12,
+    (10000 * 10**13)*13,
+    (10000 * 10**14)*14,
+    (10000 * 10**15)*15,
+    (10000 * 10**16)*16,
+    (10000 * 10**17)*17,
+    (10000 * 10**25)*25,
+]
+console.log(vilainsHealth)
 
 var points = parseInt(localStorage.getItem("menacing")) || 0
 var pointsPerClick = parseInt(localStorage.getItem("pointsPerClick")) || 1
@@ -24,20 +106,18 @@ function menacingRain() {
 
 function addPoints(pointNum) {
     points += pointNum
+    villainAttackPoint += pointNum
     pointCounter.textContent = "ゴ " + points
 
     localStorage.setItem("menacing", parseInt(points))
+    localStorage.setItem("villainAttackPoint", parseInt(villainAttackPoint))
 }
 window.onload = function() {
-
     pointCounter.textContent = "ゴ " + points
     pointsPerClickCounter.textContent = "ゴ " + pointsPerClick + " / click"
 
-    window.scroll({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-    });
+    villainHealthDown()
+    isSunOut()
 }
 
 function mouseCoordinates(event){
@@ -95,7 +175,8 @@ villainHTML.addEventListener('contextmenu', function(ev) {
         villainX -= 30
         villainHTML.style.transform = "translate(" + villainX + "px, -5px)"
         menacingRain()
-        addPoints(1)
+        addPoints(pointsPerClick)
+        villainHealthDown()
     
         setTimeout(() => { 
         villainHTML.style.transform = "translate(" + villainX + "px, 0px)"
@@ -112,7 +193,8 @@ function villainClick() {
         villainX += 30
         villainHTML.style.transform = "translate(" + villainX + "px, -5px)"
         menacingRain()
-        addPoints(1)
+        addPoints(pointsPerClick)
+        villainHealthDown()
 
         setTimeout(() => { 
             villainHTML.style.transform = "translate(" + villainX + "px, 0px)"

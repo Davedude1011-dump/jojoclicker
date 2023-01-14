@@ -5,8 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <script src="function.js"defer></script>
+        <link rel="stylesheet" href="svg's.css">
         <script src="music.js"defer></script>
+        <script src="function.js"defer></script>
         <title>Document</title>
     </head>
     <body>
@@ -30,6 +31,7 @@
         
             <div class="heading">
                 <div class="villain-name heading-inner">Oingo Boingo</div>
+                <div class="villainHP heading-inner"></div>
                 <div class="menacing-score heading-inner">ゴ 0</div>
                 <div class="menacing-per-click heading-inner">ゴ 1 / click</div>
             </div>
@@ -41,27 +43,47 @@
             </div>
 
             <div class="hover-to-shop">
-                <div class="hover-text">Shop Area</div>
+                <div class="hover-text">⭣ Shop Area ⭣</div>
             </div>
 
             <div class="for-ground"></div>
         </div>
         <div class="shopping-area">
             <div class="hover-to-fight">
-                <div class="hover-text">Main Area</div>
+                <div class="hover-text">⭡ Main Area ⭡</div>
             </div>
-
-
+            <!-- Shopping Area: -->
+            
+            <div class="shopping-area-menu-one">
+                <div class="shopping-area-menu-item">Muscle Training</div>
+                <div class="shopping-area-menu-item">Stand Training</div>
+                <div class="shopping-area-menu-item">Mind Training</div>
+                <div class="shopping-area-menu-item">Hamon Training</div>
+            </div>
+            <div class="shopping-area-menu-two"></div>
+            <div class="shopping-area-menu-three"></div>
 
             <div class="hover-to-music">
-                <div class="hover-text">Music Area</div>
+                <div class="hover-text">⭣ Music Area ⭣</div>
             </div>
         </div>
         <div class="music-area">
             <div class="hover-to-shop-up">
-                <div class="hover-text">Shop Area</div>
+                <div class="hover-text">⭡ Shop Area ⭡</div>
             </div>
+            <!-- music Area: -->
+
+            <div class="volume-outer">
+                <div class="volume-title">Music Volume</div>
+                <br>
+                <input class="volume-slider" type="range" min="0" max="1" step="0.001" />
+            </div>
+
+            <div class="music-box">
+                <div class="music-box-title">Golden Wind</div>
+                <div class="music-disk"></div>
+            </div>
+            
         </div>
-        
     </body>
 </html>
