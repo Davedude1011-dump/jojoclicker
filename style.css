@@ -376,6 +376,25 @@ body {
     height: 10%;
     background-color: antiquewhite;
     border-radius: 10px;
+    transition: 0.2s linear;
+
+    cursor: pointer;
+}
+.shopping-area-menu-item:hover {
+    background-color: white;
+}
+.shopping-area-menu-item-text {
+    position: relative;
+    top: 50%;
+    translate: 0 -50%;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+
+    color: #18202c;
+    font-size: 1.3vw;
+    font-weight: bold;
+    font-family: sans-serif;
 }
 
 

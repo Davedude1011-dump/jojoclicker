@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="svg's.css">
         <script src="music.js"defer></script>
         <script src="function.js"defer></script>
+        <script src="upgrades.js" defer></script>
         <title>Document</title>
     </head>
     <body>
@@ -55,10 +56,23 @@
             <!-- Shopping Area: -->
             
             <div class="shopping-area-menu-one">
-                <div class="shopping-area-menu-item">Muscle Training</div>
-                <div class="shopping-area-menu-item">Stand Training</div>
-                <div class="shopping-area-menu-item">Mind Training</div>
-                <div class="shopping-area-menu-item">Hamon Training</div>
+                <div class="shopping-area-menu-item" id="upgOneOne" onclick="clickBuyUpgrade(1, 1)">
+                    <div class="shopping-area-menu-item-text" id="upgOneOneInner">
+                        Muscle Training [ +1 ]
+                    </div>
+                </div>
+                <div class="shopping-area-menu-item" id="upgOneTwo" onclick="clickBuyUpgrade(2, 10)">
+                    <div class="shopping-area-menu-item-text" id="upgOneTwoInner">
+                        Mind Training [ +5 ]
+                    </div></div>
+                <div class="shopping-area-menu-item" id="upgOneThree" onclick="clickBuyUpgrade(3, 40)">
+                    <div class="shopping-area-menu-item-text" id="upgOneThreeInner">
+                        Stand Training [ +20 ]
+                    </div></div>
+                <div class="shopping-area-menu-item" id="upgOneFour" onclick="clickBuyUpgrade(4, 100)">
+                    <div class="shopping-area-menu-item-text" id="upgOneFourInner">
+                        Hamon Training [ +100 ]
+                    </div></div>
             </div>
             <div class="shopping-area-menu-two"></div>
             <div class="shopping-area-menu-three"></div>
