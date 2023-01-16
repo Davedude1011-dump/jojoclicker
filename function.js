@@ -6,9 +6,31 @@ const pointsPerClickCounter = document.querySelector(".menacing-per-click")
 const floorNum = document.querySelector(".floor-num")
 const villainHpCounter = document.querySelector(".villainHP")
 
+let currentTime = new Date();
+let currentHour = currentTime.getHours();
+let currentMinute = currentTime.getMinutes();
+let currentTimeInMinutes = currentHour * 60 + currentMinute;
+
 var userIsVampire = localStorage.getItem("userIsVampire") || false
-var vampireBoost = localStorage.getItem("vampireBoost") || 3
-var vampireDeBuff = localStorage.getItem("VampireDebuff") || 2
+var vampireBoost = 1
+var vampireFormBought = localStorage.getItem("vampireFormBought") || false;
+var stoneMaskBought = localStorage.getItem("stoneMaskBought") || false;
+if (currentTimeInMinutes >= 7.5 * 60 && currentTimeInMinutes < 19.5 * 60 && vampireFormBought == "true") {
+    if (stoneMaskBought == "true") {
+        vampireBoost = 1.5
+    }
+    else {
+        vampireBoost = 0.8
+    }
+}
+else if (currentTimeInMinutes < 7.5 * 60 && currentTimeInMinutes >= 19.5 * 60 && vampireFormBought == "true") {
+    if (stoneMaskBought == "true") {
+        vampireBoost = 3
+    }
+    else {
+        vampireBoost = 10
+    }
+}
 
 var villainAttackPoint = parseInt(localStorage.getItem("villainAttackPoint")) || 0
 
@@ -105,13 +127,14 @@ function menacingRain() {
 }
 
 function addPoints(pointNum) {
-    points += pointNum
-    villainAttackPoint += pointNum
+    points += (pointNum * vampireBoost)
+    villainAttackPoint += (pointNum * vampireBoost)
     pointCounter.textContent = "ゴ " + points
 
     localStorage.setItem("menacing", parseInt(points))
     localStorage.setItem("villainAttackPoint", parseInt(villainAttackPoint))
 }
+
 window.onload = function() {
     pointCounter.textContent = "ゴ " + points
     pointsPerClickCounter.textContent = "ゴ " + pointsPerClick + " / click"
