@@ -33,6 +33,7 @@ else if (currentTimeInMinutes < 7.5 * 60 && currentTimeInMinutes >= 19.5 * 60 &&
 }
 
 var villainAttackPoint = parseInt(localStorage.getItem("villainAttackPoint")) || 0
+var villainNum = parseInt(localStorage.getItem("villainNum")) || 0
 
 function isSunOut() {
     // get the current date and time
@@ -63,51 +64,67 @@ function isSunOut() {
     }
   }
 
-function villainHealthDown() {
-    console.log(villainAttackPoint)
-    villainHpCounter.textContent = "( " + (vilainsHealth[0] - villainAttackPoint) + " / " + vilainsHealth[0] + " )"
+function villainAttack(attackNum) {
+    villainAttackPoint += attackNum
+    villainHealthDown()
 }
 
-var vilains = [
-    "Oingo Boingo",
-    "Lang Rangler",
+function villainHealthDown() {
+    console.log(villainAttackPoint)
+    villainHpCounter.textContent = "( " + (villainsHealth[villainNum] - villainAttackPoint) + " / " + villainsHealth[villainNum] + " )"
+    if ((villainsHealth[villainNum] - villainAttackPoint) < 1) {
+        villainNum ++
+        localStorage.setItem("villainNum", villainNum)
+        villainAttackPoint = 0
+        localStorage.setItem("villainAttackPoint", 0)
+        villainHTML.style.backgroundImage = "url('images/enemyDie1.gif')"
+        setTimeout(() => {
+            villainHTML.style.backgroundImage = `url('images/villains/${villains[villainNum]}.png')`
+        }, 1200)
+    }
+}
+
+var villains = [
+    "Oingo-Boingo",
+    "Lang-Rangler",
     "Rikiel",
     "Bruford",
     "Anubis",
     "Ghiaccio",
-    "Noob Dio",
+    "Noob-Dio",
     "Wamuu",
     "Kars",
-    "Yoshikage Kira",
+    "Yoshikage-Kira",
     "Diavolo",
-    "Rohan Kishibe",
-    "Pro Dio",
+    "Rohan-Kishibe",
+    "Pro-Dio",
     "Kars",
-    "Enrico Pucci",
-    "Lovely Valentine",
+    "Enrico-Pucci",
+    "Lovely-Valentine",
     "Tooru",
 ]
-var vilainsHealth = [
-    (10000 * 10**0)*1,
-    (10000 * 10**2)*2,
-    (10000 * 10**3)*3,
-    (10000 * 10**4)*4,
-    (10000 * 10**5)*5,
-    (10000 * 10**6)*6,
-    (10000 * 10**7)*7,
-    (10000 * 10**8)*8,
-    (10000 * 10**9)*9,
-    (10000 * 10**10)*10,
-    (10000 * 10**11)*11,
-    (10000 * 10**12)*12,
-    (10000 * 10**13)*13,
-    (10000 * 10**14)*14,
-    (10000 * 10**15)*15,
-    (10000 * 10**16)*16,
-    (10000 * 10**17)*17,
-    (10000 * 10**25)*25,
+var villainsHealth = [
+    (50000 * 10**0)*1,
+    (50000 * 10**2)*2,
+    (50000 * 10**3)*3,
+    (50000 * 10**4)*4,
+    (50000 * 10**5)*5,
+    (50000 * 10**6)*6,
+    (50000 * 10**7)*7,
+    (50000 * 10**8)*8,
+    (50000 * 10**9)*9,
+    (50000 * 10**10)*10,
+    (50000 * 10**11)*11,
+    (50000 * 10**12)*12,
+    (50000 * 10**13)*13,
+    (50000 * 10**14)*14,
+    (50000 * 10**15)*15,
+    (50000 * 10**16)*16,
+    (50000 * 10**17)*17,
+    (50000 * 10**25)*25,
 ]
-console.log(vilainsHealth)
+villainHTML.style.backgroundImage = `url('images/villains/${villains[villainNum]}.png')`
+console.log(villainsHealth)
 
 var points = parseInt(localStorage.getItem("menacing")) || 0
 var pointsPerClick = parseInt(localStorage.getItem("pointsPerClick")) || 1
@@ -128,7 +145,7 @@ function menacingRain() {
 
 function addPoints(pointNum) {
     points += (pointNum * vampireBoost)
-    villainAttackPoint += (pointNum * vampireBoost)
+    villainAttack((pointNum * vampireBoost))
     pointCounter.textContent = "ゴ " + points
 
     localStorage.setItem("menacing", parseInt(points))
@@ -199,7 +216,6 @@ villainHTML.addEventListener('contextmenu', function(ev) {
         villainHTML.style.transform = "translate(" + villainX + "px, -5px)"
         menacingRain()
         addPoints(pointsPerClick)
-        villainHealthDown()
     
         setTimeout(() => { 
         villainHTML.style.transform = "translate(" + villainX + "px, 0px)"
@@ -217,7 +233,6 @@ function villainClick() {
         villainHTML.style.transform = "translate(" + villainX + "px, -5px)"
         menacingRain()
         addPoints(pointsPerClick)
-        villainHealthDown()
 
         setTimeout(() => { 
             villainHTML.style.transform = "translate(" + villainX + "px, 0px)"

@@ -216,7 +216,6 @@ body {
     aspect-ratio: 3/4;
     translate: -50%;
 
-    background-image: url("images/vilains/oingo-boingo.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -365,6 +364,37 @@ body {
     right: 5vw;
     translate: 0 -50%;
 }
+
+.shopping-area-menu-item-title {
+    position: relative;
+    left: 50%;
+    top: 0;
+    margin-top: 5%;
+    translate: -50%;
+    width: 80%;
+    height: 10%;
+    background-color: #39485f;
+    border-radius: 10px;
+    transition: 0.2s linear;
+
+    cursor: pointer;
+}
+.shopping-area-menu-item-text-title {
+    position: relative;
+    top: 50%;
+    translate: 0 -50%;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+
+    color: antiquewhite;
+    font-size: 1.3vw;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.hover-arrow { position: relative; }
+.shopping-area-menu-item-title:hover .hover-arrow { top: 3px }
 
 .shopping-area-menu-item {
     position: relative;

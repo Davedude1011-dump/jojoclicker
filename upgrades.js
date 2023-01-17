@@ -5,6 +5,8 @@ const leftUpgradeOne = document.getElementById("upgOneOne");
 const leftUpgradeTwo = document.getElementById("upgOneTwo");
 const leftUpgradeThree = document.getElementById("upgOneThree");
 const leftUpgradeFour = document.getElementById("upgOneFour");
+const leftUpgradeFive = document.getElementById("upgOneFive");
+const leftUpgradeSix = document.getElementById("upgOneSix");
 
 const vampireForm = document.getElementById("vampireForm");
 const stoneMask = document.getElementById("stoneMask");
@@ -16,13 +18,17 @@ var stoneMaskBought = localStorage.getItem("stoneMaskBought") || false;
 
 var upgOnePrice = parseInt(localStorage.getItem("upgOnePrice")) || 200;
 var upgTwoPrice = parseInt(localStorage.getItem("upgTwoPrice")) || 8000;
-var upgThreePrice = parseInt(localStorage.getItem("upgThreePrice")) || 100000;
-var upgFourPrice = parseInt(localStorage.getItem("upgFourPrice")) || 5000000;
+var upgThreePrice = parseInt(localStorage.getItem("upgThreePrice")) || 10000;
+var upgFourPrice = parseInt(localStorage.getItem("upgFourPrice")) || 500000;
+var upgFivePrice = parseInt(localStorage.getItem("upgFivePrice")) || 2000000;
+var upgSixPrice = parseInt(localStorage.getItem("upgSixPrice")) || 80000000;
 
 var upgOneOneHover = false;
 var upgOneTwoHover = false;
 var upgOneThreeHover = false;
 var upgOneFourHover = false;
+var upgOneFiveHover = false;
+var upgOneSixHover = false;
 
 function clickBuyUpgrade(upgradeNum, upgradeAmount) {
     const pointCounter = document.querySelector(".menacing-score");
@@ -42,22 +48,34 @@ function clickBuyUpgrade(upgradeNum, upgradeAmount) {
         case 4:
             upgradeNumTwo = upgFourPrice;
             break;
+        case 5:
+            upgradeNumTwo = upgFivePrice;
+            break;
+        case 6:
+            upgradeNumTwo = upgSixPrice;
+            break;
     }
 
     if (points >= upgradeNumTwo) {
         switch (upgradeNum) {
         case 1:
-        upgOnePrice = Math.floor(upgOnePrice + (0.4 * (upgradeNumTwo)));
-        break;
+            upgOnePrice = Math.floor(upgOnePrice + (0.4 * (upgradeNumTwo)));
+            break;
         case 2:
-        upgTwoPrice = Math.floor(upgTwoPrice + (0.4 * (upgradeNumTwo)));
-        break;
+            upgTwoPrice = Math.floor(upgTwoPrice + (0.4 * (upgradeNumTwo)));
+            break;
         case 3:
-        upgThreePrice = Math.floor(upgThreePrice + (0.4 * (upgradeNumTwo)));
-        break;
+            upgThreePrice = Math.floor(upgThreePrice + (0.4 * (upgradeNumTwo)));
+            break;
         case 4:
-        upgFourPrice = Math.floor(upgFourPrice + (0.4 * (upgradeNumTwo)));
-        break;
+            upgFourPrice = Math.floor(upgFourPrice + (0.4 * (upgradeNumTwo)));
+            break;
+        case 5:
+            upgFivePrice = Math.floor(upgFivePrice + (0.4 * (upgradeNumTwo)));
+            break;
+        case 6:
+            upgSixPrice = Math.floor(upgSixPrice + (0.4 * (upgradeNumTwo)));
+            break;
         }
     pointsPerClick += upgradeAmount;
     points -= upgradeNumTwo;
@@ -69,6 +87,8 @@ function clickBuyUpgrade(upgradeNum, upgradeAmount) {
     localStorage.setItem("upgTwoPrice", upgTwoPrice);
     localStorage.setItem("upgThreePrice", upgThreePrice);
     localStorage.setItem("upgFourPrice", upgFourPrice);
+    localStorage.setItem("upgThreePrice", upgFivePrice);
+    localStorage.setItem("upgFourPrice", upgSixPrice);
 
     switch (true) {
         case upgOneOneHover:
@@ -77,11 +97,17 @@ function clickBuyUpgrade(upgradeNum, upgradeAmount) {
         case upgOneTwoHover:
             document.getElementById("upgOneTwoInner").textContent = "Cost: " + upgTwoPrice;
             break;
-            case upgOneThreeHover:
+        case upgOneThreeHover:
             document.getElementById("upgOneThreeInner").textContent = "Cost: " + upgThreePrice;
             break;
-            case upgOneFourHover:
+        case upgOneFourHover:
             document.getElementById("upgOneFourInner").textContent = "Cost: " + upgFourPrice;
+            break;
+        case upgOneFiveHover:
+            document.getElementById("upgOneFiveInner").textContent = "Cost: " + upgFivePrice;
+            break;
+        case upgOneSixHover:
+            document.getElementById("upgOneSixInner").textContent = "Cost: " + upgSixPrice;
             break;
         }
     }
@@ -124,6 +150,24 @@ leftUpgradeFour.addEventListener("mouseenter", function () {
 leftUpgradeFour.addEventListener("mouseleave", function () {
     upgOneFourHover = false;
     document.getElementById("upgOneFourInner").textContent = "Hamon Training [ +100 ]";
+});
+    
+leftUpgradeFive.addEventListener("mouseenter", function () {
+    upgOneFiveHover = true;
+    document.getElementById("upgOneFiveInner").textContent = "Cost: " + upgFivePrice;
+});
+leftUpgradeFive.addEventListener("mouseleave", function () {
+    upgOneFiveHover = false;
+    document.getElementById("upgOneFiveInner").textContent = "Multi Training [ +500 ]";
+});
+    
+leftUpgradeSix.addEventListener("mouseenter", function () {
+    upgOneSixHover = true;
+    document.getElementById("upgOneSixInner").textContent = "Cost: " + upgSixPrice;
+});
+leftUpgradeSix.addEventListener("mouseleave", function () {
+    upgOneSixHover = false;
+    document.getElementById("upgOneSixInner").textContent = "Stand Evolving [ +5000 ]";
 });
     
 vampireForm.addEventListener("click", function () {
