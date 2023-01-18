@@ -11,17 +11,17 @@ const leftUpgradeSix = document.getElementById("upgOneSix");
 const vampireForm = document.getElementById("vampireForm");
 const stoneMask = document.getElementById("stoneMask");
 
-var vampireFormPrice = 100000000;
+var vampireFormPrice = 1000000;
 var vampireFormBought = localStorage.getItem("vampireFormBought") || false;
-var stoneMaskPrice = 100000000000;
+var stoneMaskPrice = 10000000;
 var stoneMaskBought = localStorage.getItem("stoneMaskBought") || false;
 
-var upgOnePrice = parseInt(localStorage.getItem("upgOnePrice")) || 200;
-var upgTwoPrice = parseInt(localStorage.getItem("upgTwoPrice")) || 8000;
-var upgThreePrice = parseInt(localStorage.getItem("upgThreePrice")) || 10000;
-var upgFourPrice = parseInt(localStorage.getItem("upgFourPrice")) || 500000;
-var upgFivePrice = parseInt(localStorage.getItem("upgFivePrice")) || 2000000;
-var upgSixPrice = parseInt(localStorage.getItem("upgSixPrice")) || 80000000;
+var upgOnePrice = parseInt(localStorage.getItem("upgOnePrice")) || 20;
+var upgTwoPrice = parseInt(localStorage.getItem("upgTwoPrice")) || 800;
+var upgThreePrice = parseInt(localStorage.getItem("upgThreePrice")) || 1000;
+var upgFourPrice = parseInt(localStorage.getItem("upgFourPrice")) || 50000;
+var upgFivePrice = parseInt(localStorage.getItem("upgFivePrice")) || 200000;
+var upgSixPrice = parseInt(localStorage.getItem("upgSixPrice")) || 8000000;
 
 var upgOneOneHover = false;
 var upgOneTwoHover = false;
@@ -59,22 +59,22 @@ function clickBuyUpgrade(upgradeNum, upgradeAmount) {
     if (points >= upgradeNumTwo) {
         switch (upgradeNum) {
         case 1:
-            upgOnePrice = Math.floor(upgOnePrice + (0.4 * (upgradeNumTwo)));
+            upgOnePrice = Math.floor(upgOnePrice + (0.25 * (upgradeNumTwo)));
             break;
         case 2:
-            upgTwoPrice = Math.floor(upgTwoPrice + (0.4 * (upgradeNumTwo)));
+            upgTwoPrice = Math.floor(upgTwoPrice + (0.25 * (upgradeNumTwo)));
             break;
         case 3:
-            upgThreePrice = Math.floor(upgThreePrice + (0.4 * (upgradeNumTwo)));
+            upgThreePrice = Math.floor(upgThreePrice + (0.25 * (upgradeNumTwo)));
             break;
         case 4:
-            upgFourPrice = Math.floor(upgFourPrice + (0.4 * (upgradeNumTwo)));
+            upgFourPrice = Math.floor(upgFourPrice + (0.25 * (upgradeNumTwo)));
             break;
         case 5:
-            upgFivePrice = Math.floor(upgFivePrice + (0.4 * (upgradeNumTwo)));
+            upgFivePrice = Math.floor(upgFivePrice + (0.25 * (upgradeNumTwo)));
             break;
         case 6:
-            upgSixPrice = Math.floor(upgSixPrice + (0.4 * (upgradeNumTwo)));
+            upgSixPrice = Math.floor(upgSixPrice + (0.25 * (upgradeNumTwo)));
             break;
         }
     pointsPerClick += upgradeAmount;

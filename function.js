@@ -5,6 +5,7 @@ const pointCounter = document.querySelector(".menacing-score")
 const pointsPerClickCounter = document.querySelector(".menacing-per-click")
 const floorNum = document.querySelector(".floor-num")
 const villainHpCounter = document.querySelector(".villainHP")
+const villainName = document.querySelector(".villain-name")
 
 let currentTime = new Date();
 let currentHour = currentTime.getHours();
@@ -78,6 +79,9 @@ function villainHealthDown() {
         villainAttackPoint = 0
         localStorage.setItem("villainAttackPoint", 0)
         villainHTML.style.backgroundImage = "url('images/enemyDie1.gif')"
+
+        villainName.textContent = villains[villainNum]
+
         setTimeout(() => {
             villainHTML.style.backgroundImage = `url('images/villains/${villains[villainNum]}.png')`
         }, 1200)
@@ -93,7 +97,6 @@ var villains = [
     "Ghiaccio",
     "Noob-Dio",
     "Wamuu",
-    "Kars",
     "Yoshikage-Kira",
     "Diavolo",
     "Rohan-Kishibe",
@@ -124,6 +127,7 @@ var villainsHealth = [
     (50000 * 10**25)*25,
 ]
 villainHTML.style.backgroundImage = `url('images/villains/${villains[villainNum]}.png')`
+villainName.textContent = villains[villainNum]
 console.log(villainsHealth)
 
 var points = parseInt(localStorage.getItem("menacing")) || 0
